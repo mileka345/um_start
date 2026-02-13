@@ -23,6 +23,7 @@
 
 body {
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   font-family: 'Nunito', sans-serif;
   background: linear-gradient(165deg, #a78bfa 0%, #c084fc 18%, #f472b6 40%, #fb923c 65%, #fbbf24 85%, #a5f3fc 100%);
   background-size: 200% 200%;
@@ -31,7 +32,11 @@ body {
   justify-content: center;
   align-items: center;
   padding: 24px;
+  padding-left: max(24px, env(safe-area-inset-left));
+  padding-right: max(24px, env(safe-area-inset-right));
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 body.bg-ocean {
@@ -170,6 +175,7 @@ body.bg-candy {
   align-items: center;
   justify-content: center;
   padding: 0 24px;
+  overflow-x: hidden;
 }
 
 @media (min-width: 1200px) {
@@ -1832,19 +1838,146 @@ input[type="text"]:focus {
   font-size: 1rem !important;
 }
 
-/* —— Адаптив —— */
+/* —— Адаптив: планшеты и мобильные —— */
+@media (max-width: 1024px) {
+  body { padding: 16px 12px; }
+  #app { padding: 0 12px; min-height: 88vh; align-items: flex-start; padding-top: 12px; }
+  .card { padding: 28px 24px; border-radius: 24px; max-width: 100%; }
+  h1 { font-size: 1.85rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.15rem; }
+  .map-node { padding: 12px 16px; gap: 12px; }
+  .map-node .node-icon { width: 48px; height: 48px; font-size: 1.75rem; }
+  .map-node .node-title { font-size: 1rem; }
+  .map-node .node-desc { font-size: 0.8rem; }
+  .top-bar { margin-bottom: 14px; gap: 8px; }
+  .btn-top { padding: 10px 14px; font-size: 0.85rem; }
+  .currency { padding: 8px 12px; font-size: 1rem; }
+  .modal-box { max-width: 92vw; padding: 24px 20px; border-radius: 22px; }
+  .modal-box .modal-title { font-size: 1.3rem; }
+  .modal-box .modal-text { font-size: 1rem; }
+  .modal-box .modal-buttons button { min-width: 120px; padding: 14px 20px; }
+  .difficulty-btn { padding: 16px 20px; }
+  .difficulty-name { font-size: 1rem; }
+  .shop-tabs { gap: 8px; }
+  .shop-tab { padding: 10px 14px; font-size: 0.9rem; }
+  .shop-item { padding: 14px 16px; flex-wrap: wrap; gap: 12px; }
+  .shop-item-info { min-width: 0; flex: 1 1 180px; }
+  .shop-item-btn { width: 100%; min-height: 44px; }
+  .hint-box { padding: 12px 14px; font-size: 0.95rem; }
+  .question-block { padding: 20px 16px; border-radius: 20px; }
+  .question-block .question-text { font-size: 1.65rem; }
+  .options-grid { gap: 10px; }
+  .option-btn { min-height: 48px; padding: 14px 18px; font-size: 1rem; }
+  .reaction-zone { min-height: 160px; }
+  .reaction-target { min-width: 80px; min-height: 80px; font-size: 2.5rem; }
+}
+
 @media (max-width: 768px) {
-  .card { padding: 28px 24px; border-radius: 24px; }
+  body { padding: 12px 10px; }
+  #app { padding: 0 10px; min-height: 85vh; }
+  .card { padding: 24px 20px; border-radius: 22px; }
   .world-card { padding: 18px 20px; flex-direction: column; text-align: center; }
-  .map-node { flex-direction: column; text-align: center; }
+  .map-node { flex-direction: column; text-align: center; gap: 10px; }
+  .map-nodes { gap: 14px; }
+  .adventure-map { min-height: 320px; padding: 16px 0; }
+  h1 { font-size: 1.65rem; }
+  h2 { font-size: 1.3rem; }
+  .btn-back { padding: 12px 16px; min-height: 44px; }
+  .btn-primary, .btn-secondary { padding: 14px 20px; min-height: 48px; font-size: 1rem; }
+  .profile-card .profile-avatar { font-size: 4rem; }
+  .profile-stats { gap: 12px; }
+  .profile-stat { padding: 10px 16px; font-size: 0.95rem; }
+  .profile-stat-val { font-size: 1.2rem; }
+  .next-step-actions { flex-direction: column; }
+  .next-step-actions .btn-primary { width: 100%; }
+  .growth-skill-block { padding: 12px 14px; }
+  .knowledge-skill-row { flex-wrap: wrap; gap: 10px; }
+  .quiz-shop { gap: 8px; }
+  .quiz-shop-btn { padding: 12px 14px !important; min-height: 44px; font-size: 0.9rem !important; }
+  .lives { font-size: 1.5rem; }
+  .word-task-box { padding: 14px; }
+  .word-step { font-size: 0.95rem; }
+  .parent-panel-title { font-size: 1.15rem; }
+  .parent-block { padding: 12px 14px; }
 }
 
 @media (max-width: 520px) {
-  .options-grid { grid-template-columns: 1fr; }
-  .memory-grid { grid-template-columns: repeat(3, 1fr); max-width: 260px; }
-  .memory-card { max-height: 75px; }
-  .question-block .question-text { font-size: 1.5rem; }
-  .heroes-grid { max-width: 100%; }
+  body { padding: 10px 8px; }
+  #app { padding: 0 8px; }
+  .card { padding: 20px 16px; border-radius: 20px; }
+  .card::before { height: 6px; border-radius: 20px 20px 0 0; }
+  h1 { font-size: 1.5rem; margin-bottom: 8px; }
+  h2 { font-size: 1.2rem; }
+  h3 { font-size: 1.05rem; }
+  p { font-size: 0.95rem; }
+  .options-grid { grid-template-columns: 1fr; gap: 10px; }
+  .option-btn { min-height: 52px; padding: 16px 20px; font-size: 1.05rem; }
+  .memory-grid { grid-template-columns: repeat(3, 1fr); max-width: 260px; gap: 8px; }
+  .memory-card { max-height: 72px; }
+  .question-block { padding: 16px 14px; margin-bottom: 18px; }
+  .question-block .question-text { font-size: 1.45rem; line-height: 1.35; }
+  .heroes-grid { max-width: 100%; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .hero-card { padding: 16px 12px; }
+  .hero-card-icon { font-size: 2.75rem; }
+  .hero-card-name { font-size: 1rem; }
+  .hero-card-desc { font-size: 0.8rem; }
+  .top-bar { flex-direction: column; align-items: stretch; }
+  .top-bar-right { justify-content: flex-start; }
+  .btn-top { min-height: 44px; padding: 10px 12px; }
+  .currency { justify-content: center; }
+  .difficulty-grid { gap: 10px; }
+  .difficulty-btn { padding: 18px 16px; min-height: 56px; flex-direction: column; gap: 6px; text-align: center; }
+  .difficulty-name { flex: none; }
+  .difficulty-desc { font-size: 0.8rem; }
+  .modal-box { max-width: 96vw; padding: 20px 16px; border-radius: 20px; margin: 10px; }
+  .modal-box .modal-icon { font-size: 2.5rem; }
+  .modal-box .modal-title { font-size: 1.2rem; }
+  .modal-box .modal-buttons { flex-direction: column; }
+  .modal-box .modal-buttons button { width: 100%; min-width: 0; min-height: 48px; }
+  .shop-tabs { flex-wrap: wrap; }
+  .shop-tab { flex: 1 1 auto; min-width: 0; min-height: 44px; font-size: 0.85rem; padding: 10px 8px; }
+  .shop-item { flex-direction: column; align-items: stretch; text-align: center; }
+  .shop-item-icon { font-size: 2rem; }
+  .shop-item-btn { min-height: 48px; }
+  .hint-box { flex-direction: column; align-items: center; text-align: center; padding: 12px; font-size: 0.9rem; }
+  .hint-box .hint-icon { font-size: 1.35rem; }
+  input[type="text"] { padding: 14px 16px; font-size: 16px; }
+  .profile-achievements { justify-content: center; padding: 10px; }
+  .profile-ach { font-size: 1.75rem; }
+  .word-steps { font-size: 0.9rem; }
+  .report-block { padding: 12px 14px; }
+  .parent-block { padding: 12px; }
+  .parent-recommendation { font-size: 0.85rem; }
+}
+
+@media (max-width: 380px) {
+  body { padding: 8px 6px; padding-left: max(8px, env(safe-area-inset-left)); padding-right: max(8px, env(safe-area-inset-right)); }
+  .card { padding: 16px 14px; border-radius: 18px; }
+  h1 { font-size: 1.35rem; }
+  h2 { font-size: 1.1rem; }
+  .map-node .node-icon { width: 44px; height: 44px; font-size: 1.5rem; }
+  .option-btn { min-height: 48px; font-size: 1rem; }
+  .memory-grid { max-width: 240px; }
+  .memory-card { max-height: 65px; }
+  .question-block .question-text { font-size: 1.35rem; }
+  .heroes-grid { gap: 10px; }
+  .btn-primary, .btn-secondary { padding: 12px 16px; min-height: 46px; font-size: 0.95rem; }
+}
+
+/* Модалки и контент: перенос длинных слов на узких экранах */
+.modal-box { word-wrap: break-word; }
+@media (max-width: 520px) {
+  #modal-root .modal-box { margin: env(safe-area-inset-top) 10px 10px; max-height: calc(100vh - 20px - env(safe-area-inset-bottom)); overflow-y: auto; }
+}
+
+/* Минимальные размеры для сенсорных целей (доступность) */
+@media (pointer: coarse) {
+  button:not(.avatar):not(.profile-ach) { min-height: 44px; }
+  .map-node { min-height: 56px; }
+  .option-btn { min-height: 48px; }
+  .shop-item-btn { min-height: 44px; }
+  .btn-top { min-height: 44px; }
 }
 
 /* —— Недельный отчёт —— */
